@@ -34,7 +34,7 @@ func NewDataSetController(datasetService services.DataSetService, logger conf.Lo
 // @Param data body http_dto.DatasetCreateReq true "data"
 // @Success 200 {object} app.Response
 // @Router /api/v1/dataset [post]
-func (d DataSetController) SaveDataSet(c *gin.Context) {
+func (d *DataSetController) SaveDataSet(c *gin.Context) {
 	appG := app.Gin{C: c}
 	dataSetReq := http_dto.DatasetCreateReq{}
 	if err := c.ShouldBindJSON(&dataSetReq); err != nil {
@@ -79,7 +79,7 @@ func (d DataSetController) SaveDataSet(c *gin.Context) {
 // @Success 200 {object} app.Response
 // @Failure 500 {object} app.Response
 // @Router /api/v1/dataset/{mid} [delete]
-func (d DataSetController) DeleteDataSet(c *gin.Context) {
+func (d *DataSetController) DeleteDataSet(c *gin.Context) {
 	appG := app.Gin{C: c}
 	id := com.StrTo(c.Param("mid")).MustInt()
 	if err := d.service.DeleteDataSet(uint(id)); err != nil {
@@ -91,7 +91,15 @@ func (d DataSetController) DeleteDataSet(c *gin.Context) {
 	appG.Response(http.StatusOK, e.SUCCESS, nil)
 }
 
-func (d DataSetController) GetDataSet(c *gin.Context) {
+// GetDataSet  根据主中心查询分中心数据集
+// @Summary 查询分中心数据集
+// @Description 获取JSON
+// @Tags 数据集管理
+// @Param id path string true "mid"
+// @Success 200 {object} app.Response
+// @Failure 500 {object} app.Response
+// @Router /api/v1/dataset/{mid} [get]
+func (d *DataSetController) GetDataSet(c *gin.Context) {
 	appG := app.Gin{C: c}
 	id := com.StrTo(c.Param("mid")).MustInt()
 	datasets, err := d.service.GetDataSet(id)

@@ -36,6 +36,35 @@ definitions:
     - providerType
     - userId
     type: object
+  http_dto.ModelCreateReq:
+    properties:
+      centerId:
+        type: integer
+      desc:
+        type: string
+      mid:
+        type: integer
+      name:
+        type: string
+      nonPublic:
+        type: boolean
+      providerType:
+        type: integer
+      subPath:
+        type: integer
+      userId:
+        type: integer
+      volumeId:
+        type: integer
+    required:
+    - centerId
+    - desc
+    - mid
+    - name
+    - nonPublic
+    - providerType
+    - userId
+    type: object
 info:
   contact: {}
   description: data-engine api文档
@@ -83,4 +112,85 @@ paths:
       summary: 删除数据集
       tags:
       - 数据集管理
+    get:
+      description: 获取JSON
+      parameters:
+      - description: mid
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: 查询分中心数据集
+      tags:
+      - 数据集管理
+  /api/v1/model:
+    post:
+      consumes:
+      - application/json
+      description: 获取JSON
+      parameters:
+      - description: data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/http_dto.ModelCreateReq'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: 创建模型
+      tags:
+      - 模型管理
+  /api/v1/model/{mid}:
+    delete:
+      description: 获取JSON
+      parameters:
+      - description: mid
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: 删除模型
+      tags:
+      - 模型管理
+    get:
+      description: 获取JSON
+      parameters:
+      - description: mid
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: 查询分中心模型
+      tags:
+      - 模型管理
 swagger: "2.0"

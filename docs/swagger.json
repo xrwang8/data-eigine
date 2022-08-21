@@ -39,12 +39,135 @@
             }
         },
         "/api/v1/dataset/{mid}": {
+            "get": {
+                "description": "获取JSON",
+                "tags": [
+                    "数据集管理"
+                ],
+                "summary": "查询分中心数据集",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "mid",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/app.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/app.Response"
+                        }
+                    }
+                }
+            },
             "delete": {
                 "description": "获取JSON",
                 "tags": [
                     "数据集管理"
                 ],
                 "summary": "删除数据集",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "mid",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/app.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/app.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/model": {
+            "post": {
+                "description": "获取JSON",
+                "consumes": [
+                    "application/json"
+                ],
+                "tags": [
+                    "模型管理"
+                ],
+                "summary": "创建模型",
+                "parameters": [
+                    {
+                        "description": "data",
+                        "name": "data",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/http_dto.ModelCreateReq"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/app.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/model/{mid}": {
+            "get": {
+                "description": "获取JSON",
+                "tags": [
+                    "模型管理"
+                ],
+                "summary": "查询分中心模型",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "mid",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/app.Response"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/app.Response"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "获取JSON",
+                "tags": [
+                    "模型管理"
+                ],
+                "summary": "删除模型",
                 "parameters": [
                     {
                         "type": "string",
@@ -85,6 +208,47 @@
             }
         },
         "http_dto.DatasetCreateReq": {
+            "type": "object",
+            "required": [
+                "centerId",
+                "desc",
+                "mid",
+                "name",
+                "nonPublic",
+                "providerType",
+                "userId"
+            ],
+            "properties": {
+                "centerId": {
+                    "type": "integer"
+                },
+                "desc": {
+                    "type": "string"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "nonPublic": {
+                    "type": "boolean"
+                },
+                "providerType": {
+                    "type": "integer"
+                },
+                "subPath": {
+                    "type": "integer"
+                },
+                "userId": {
+                    "type": "integer"
+                },
+                "volumeId": {
+                    "type": "integer"
+                }
+            }
+        },
+        "http_dto.ModelCreateReq": {
             "type": "object",
             "required": [
                 "centerId",

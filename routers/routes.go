@@ -4,8 +4,9 @@ import "go.uber.org/fx"
 
 var Module = fx.Options(
 	fx.Provide(NewRoutes),
-	fx.Provide(NewDataSetRoutes),
 	fx.Provide(NewSwaggerRoutes),
+	fx.Provide(NewDataSetRoutes),
+	fx.Provide(NewModelRoutes),
 )
 
 type Routes []Route
@@ -14,10 +15,11 @@ type Route interface {
 	Setup()
 }
 
-func NewRoutes(dataSetRoutes DataSetRoutes, swagger SwaggerRoutes) Routes {
+func NewRoutes(dataSetRoutes DataSetRoutes, swagger SwaggerRoutes, modelRoutes ModelRoutes) Routes {
 	return Routes{
 		dataSetRoutes,
 		swagger,
+		modelRoutes,
 	}
 }
 
