@@ -1,0 +1,86 @@
+definitions:
+  app.Response:
+    properties:
+      code:
+        type: integer
+      data: {}
+      msg:
+        type: string
+    type: object
+  http_dto.DatasetCreateReq:
+    properties:
+      centerId:
+        type: integer
+      desc:
+        type: string
+      mid:
+        type: integer
+      name:
+        type: string
+      nonPublic:
+        type: boolean
+      providerType:
+        type: integer
+      subPath:
+        type: integer
+      userId:
+        type: integer
+      volumeId:
+        type: integer
+    required:
+    - centerId
+    - desc
+    - mid
+    - name
+    - nonPublic
+    - providerType
+    - userId
+    type: object
+info:
+  contact: {}
+  description: data-engine api文档
+  title: data-engine API
+  version: 1.0.0
+paths:
+  /api/v1/dataset:
+    post:
+      consumes:
+      - application/json
+      description: 获取JSON
+      parameters:
+      - description: data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/http_dto.DatasetCreateReq'
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: 创建数据集
+      tags:
+      - 数据集管理
+  /api/v1/dataset/{mid}:
+    delete:
+      description: 获取JSON
+      parameters:
+      - description: mid
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/app.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/app.Response'
+      summary: 删除数据集
+      tags:
+      - 数据集管理
+swagger: "2.0"

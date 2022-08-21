@@ -1,0 +1,20 @@
+app:
+  port: 8080
+  env: dev   # dev、prod
+
+
+
+database:
+  host: 101.35.79.218
+  port: 3306
+  user: root
+  password: 123456
+  dbname: cp_fusion
+
+log:
+  log_level: debug
+  log_output: ./app.log
+
+
+
+
