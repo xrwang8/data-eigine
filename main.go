@@ -9,5 +9,5 @@ import (
 // @version 1.0.0
 // @description data-engine api文档
 func main() {
-	cmd.RootApp.Execute()
+	cmd.Execute()
 }
