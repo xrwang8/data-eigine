@@ -16,10 +16,6 @@ import (
 	"time"
 )
 
-//var (
-//	confFile string
-//)
-
 type StartCommand struct {
 	server *http.Server
 }
